@@ -1,25 +1,22 @@
-import shortid from 'shortid';
-import propTypes from 'prop-types';
-import { FilterName, FilterStyle } from './Filter.styled';
+import PropTypes from 'prop-types';
+import { FilterContainer, Input, Text } from './Filter.styled';
 
-export const Filter = ({ value, onChange }) => {
-  const nameInputIdThird = shortid.generate();
+export default function Filter({ value, changeFilter }) {
   return (
-    <div>
-      <FilterStyle htmlFor={nameInputIdThird}>
-        Find contacts by name
-      </FilterStyle>
-      <FilterName
-        id={nameInputIdThird}
+    <FilterContainer>
+      <Text>Пошук контакту за іменем</Text>
+      <Input
         type="text"
+        name="filter"
         value={value}
-        onChange={onChange}
+        onChange={changeFilter}
+        placeholder="Ім’я Прізвище"
       />
-    </div>
+    </FilterContainer>
   );
-};
+}
 
 Filter.propTypes = {
-  value: propTypes.string.isRequired,
-  onChange: propTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
